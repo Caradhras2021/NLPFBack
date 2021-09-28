@@ -1,17 +1,10 @@
-from Flask_Api_MongoDB.apiMongo import db
+from flask import Flask, json, jsonify
+from flask_mongoengine import MongoEngine
+from apiMongo import db
 
 
-class DateModel(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    id_mutation = db.Column(db.String(100), nullable=False)
-    date_mutation = db.Column(db.String(100), nullable=False)
-    numero_disposition = db.Column(db.Integer, nullable=False)
-
-    def __repr__(self):
-        return f"Date(id_mutation = {id_mutation}, date_mutation = {date_mutation}, numero_disposition = {numero_disposition})"
-
-
-class PrixModel(db.Model):
+""""
+class PrixModel(db.Document):
     id = db.Column(db.Integer, primary_key=True)
     valeur_fonciere = db.Column(db.Integer, nullable=False)
 
@@ -88,3 +81,4 @@ class NatureModel(db.Model):
     def __repr__(self):
         return f"NatureModel(code_nature_culture = {code_nature_culture}, nature_culture = {nature_culture}, \
                 code_nature_culture_speciale = {code_nature_culture_speciale}, nature_culture_speciale = {nature_culture_speciale})"
+                """
