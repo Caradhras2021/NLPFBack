@@ -6,8 +6,7 @@ from fastapi.encoders import jsonable_encoder
 # that defines the structure and types of the different objects stored
 # in the recipes collection, and managed by this API.
 from pydantic import BaseModel, Field
-from typing import List, Optional, Union
-from datetime import datetime
+from typing import Optional
 
 from objectid import PydanticObjectId
 

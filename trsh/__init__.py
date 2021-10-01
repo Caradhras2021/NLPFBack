@@ -1,16 +1,6 @@
-from datetime import datetime
-import os
-
 import pymongo
-# from flask_pymongo import PyMongo
-# from pymongo.collection import Collection, ReturnDocument
-
-import flask
-from flask import Flask, request, url_for, jsonify, render_template
-
+from flask import Flask
 from environment import *
-
-from model import Transaction
 from helpers import *
 
 # ------------------
@@ -21,17 +11,6 @@ my_collection = my_db[collection_name]
 
 app = Flask(__name__)
 app.config["MONGO_URI"] = databaseURI
-# pymongo = PyMongo(app)
-
-
-
-@app.route("/")
-def root():
-    return "Yep, you're in !"
-
-@app.route("/hello")
-def hello():
-    return "Hello World !"
 
 @app.route("/transaction/")
 def one_transaction():
