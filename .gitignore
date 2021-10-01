@@ -1,4 +1,5 @@
 .idea/
 Flask_Api_MongoDB/__pycache__/*
+venv/*
 
 *.csv
