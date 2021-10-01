@@ -1,2 +1,4 @@
 .idea/
-Flask_Api_MongoDB/__pycache__/
+Flask_Api_MongoDB/__pycache__/*
+
+*.csv
