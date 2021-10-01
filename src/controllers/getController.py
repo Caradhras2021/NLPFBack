@@ -10,7 +10,6 @@ def index():
 
 
 def getAll():
-    print('getAll called*****************************************')
     recipes = nlpfDb.get_collection("data")
     recipes.create_index("slug", unique=True)
     for recipe in recipes.find():
