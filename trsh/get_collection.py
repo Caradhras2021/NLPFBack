@@ -3,7 +3,6 @@ import os
 import re
 
 from pymongo import MongoClient
-from bson import ObjectId
 
 client = MongoClient(os.environ["MONGO_URI"])
 

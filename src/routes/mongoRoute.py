@@ -1,11 +1,12 @@
 from flask import Blueprint
-from controllers.getController import getAll, index
+from controllers.getController import getOne, getAll, index
 
 
 caradhras = Blueprint('caradhras', __name__)
 
 
 # All GET routes
+caradhras.route('/getOne', methods=['GET'])(getOne)
 caradhras.route('/getAll', methods=['GET'])(getAll)
 caradhras.route('/', methods=['GET'])(index)
 
