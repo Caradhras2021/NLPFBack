@@ -9,11 +9,7 @@ def getTransactionModel():
     return dataTable.find({}, mandatoryFileds).limit(10)
 
 def transactionModel(filters):
-    arrayFilters = []
-    for key, value in filters.items():
-        if (str(value) != ""):
-            arrayFilters.append({key: value})
-    query = { "$and": arrayFilters }
+    query = { "$and": filters }
     cursor = dataTable.find(query, mandatoryFileds)
     res = []
     for doc in cursor:
@@ -21,12 +17,3 @@ def transactionModel(filters):
         res.append(doc)
     response = json.dumps(res)
     return response
-
-def to_bson(self):
-    data = self.dict(by_alias=True, exclude_none=True)
-    if data.get("_id") is None:
-        data.pop("_id", None)
-    return data
-
-def parse_json(data):
-    return dumps(data)

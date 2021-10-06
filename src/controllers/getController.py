@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request
 from flask.helpers import make_response
 from flask.json import jsonify
 from models.dbMongoModels import dataTable
-from models.transactionModels import parse_json
+import json
 from services.transactionService import getTransactionsService, transactionService
 
 caradhras = Blueprint('caradhras', __name__)
@@ -15,7 +15,7 @@ def index():
 def getOne():
     first_transaction = dataTable.find_one()
 
-    return parse_json(first_transaction)
+    return json.dumps(first_transaction)
 
 ### MAIN WITH FILTERS
 @caradhras.route('/getTransaction', methods=['GET'])
@@ -38,10 +38,10 @@ def getTransaction():
 def getAll():
     transactions = dataTable.find()
 
-    return parse_json(transactions)
+    return json.dumps(transactions)
 
 @caradhras.route('/getTransactions', methods=['GET'])
 def getTransactions():
     transactions = getTransactionsService()
 
-    return parse_json(transactions)
+    return json.dumps(transactions)
