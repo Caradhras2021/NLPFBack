@@ -3,7 +3,7 @@ from flask.helpers import make_response
 from flask.json import jsonify
 from models.dbMongoModels import dataTable
 import json
-from services.transactionService import getTransactionsService, transactionService
+from services.transactionService import transactionService
 
 caradhras = Blueprint('caradhras', __name__)
 

@@ -1,4 +1,4 @@
-from models.transactionModels import getTransactionModel, transactionModel
+from models.transactionModels import transactionModel
 
 def transactionService(filters):
     arrayFilters = []
@@ -6,8 +6,4 @@ def transactionService(filters):
         if (str(value) != ""):
             arrayFilters.append({key: value})
     transactions = transactionModel(arrayFilters)
-    return transactions
-        
-def getTransactionsService():
-    transactions = getTransactionModel()
     return transactions
