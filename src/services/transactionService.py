@@ -1,15 +1,9 @@
-from models.transactionModels import Transaction, getTransactionModel, transactionModel
+from models.transactionModels import getTransactionModel, transactionModel
 
-def transactionService(query, startIndex, blockSize):
-    transactions = transactionModel(query, startIndex, blockSize)
-    print(transactions)
-    for doc in transactions:
-        print(doc)
-
-
-
+def transactionService(filters):
+    transactions = transactionModel(filters)
+    return transactions
+        
 def getTransactionsService():
     transactions = getTransactionModel()
-    
-
     return transactions
