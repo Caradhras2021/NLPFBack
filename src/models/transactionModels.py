@@ -28,6 +28,9 @@ def getTransactionModel():
 
     return transactions
 
+def transactionModel(query, startIndex, blockSize):
+    return dataTable.find(query)[startIndex:blockSize]
+
 def to_json(self):
     return jsonable_encoder(self, exclude_none=True)
 

@@ -1,5 +1,5 @@
 from flask import Flask
-from routes.mongoRoute import caradhras
+from controllers.getController import caradhras
 from config import *
 
 app = Flask(__name__)

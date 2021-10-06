@@ -2,15 +2,15 @@ from flask import Blueprint
 from controllers.getController import index, getOne, getAll, getTransactions
 
 
-caradhras = Blueprint('caradhras', __name__)
+# caradhras = Blueprint('caradhras', __name__)
 
 
 # All GET routes
 
-caradhras.route('/', methods=['GET'])(index)
-caradhras.route('/getOne', methods=['GET'])(getOne)
-caradhras.route('/getAll', methods=['GET'])(getAll)
-caradhras.route('/getTransactions', methods=['GET'])(getTransactions)
+# caradhras.route('/', methods=['GET'])(index)
+# caradhras.route('/getOne', methods=['GET'])(getOne)
+# caradhras.route('/getAll', methods=['GET'])(getAll)
+# caradhras.route('/getTransactions', methods=['GET'])(getTransactions)
 
 # All POST routes
 # mongoRoute.route('/create', methods=['POST'])(store)
