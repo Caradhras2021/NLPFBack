@@ -18,11 +18,13 @@ def getOne():
     return json.dumps(first_transaction)
 
 ### MAIN WITH FILTERS
-@caradhras.route('/getTransaction/<pageNumber>/<pageSize>', methods=['GET'])
-def getTransaction(pageNumber=1, pageSize=20):
+@caradhras.route('/getTransaction/<page>/<pageSize>', methods=['POST'])
+def getTransaction(page=1, pageSize=20):
     try:
-        body = request.get_json()
-        res = transactionService(body, int(pageNumber), int(pageSize))
+        body = request.get_json()['data']
+        print('this is the bosy', body)
+        res = transactionService(body, int(page), int(pageSize))
+        print(res)
         return res
     except:
         response = make_response(
