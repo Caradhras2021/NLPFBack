@@ -40,8 +40,8 @@ def getAll():
 
     return json.dumps(transactions)
 
-@caradhras.route('/getTransactions', methods=['GET'])
-def getTransactions():
-    transactions = getTransactionsService()
+# @caradhras.route('/getTransactions', methods=['GET'])
+# def getTransactions():
+    # transactions = getTransactionsService()
 
-    return json.dumps(transactions)
+#     return json.dumps(transactions)
