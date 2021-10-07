@@ -18,11 +18,11 @@ def getOne():
     return json.dumps(first_transaction)
 
 ### MAIN WITH FILTERS
-@caradhras.route('/getTransaction', methods=['GET'])
-def getTransaction():
+@caradhras.route('/getTransaction/<pageNumber>/<pageSize>', methods=['GET'])
+def getTransaction(pageNumber=1, pageSize=20):
     try:
         body = request.get_json()
-        res = transactionService(body)
+        res = transactionService(body, int(pageNumber), int(pageSize))
         return res
     except:
         response = make_response(
@@ -39,9 +39,3 @@ def getAll():
     transactions = dataTable.find()
 
     return json.dumps(transactions)
-
-# @caradhras.route('/getTransactions', methods=['GET'])
-# def getTransactions():
-    # transactions = getTransactionsService()
-
-#     return json.dumps(transactions)

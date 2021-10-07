@@ -7,11 +7,12 @@ mandatoryFields = { "id_mutation": 1, "date_mutation": 1, "valeur_fonciere": 1, 
 
 def transactionModel(filters, pageNumber=1, pageSize=20):
     query = { "$and": filters }
-
     if (pageNumber == 1):
+        print("1. Page number : " + pageNumber + " and page size : " + pageSize)
         cursor = dataTable.find(query, mandatoryFields).limit(pageSize)
     else:
-        cursor = dataTable.find(query, mandatoryFields).skip(pageSize * (pageNumber - 1)).limit(pageSize)
+        skipValue = pageSize * (pageNumber) - 1
+        cursor = dataTable.find(query, mandatoryFields).skip(skipValue).limit(pageNumber)
     res = []
     for doc in cursor:
         doc.pop('_id')
