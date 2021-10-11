@@ -22,9 +22,9 @@ def getOne():
 def getTransaction(page=1, pageSize=20):
     try:
         body = request.get_json()['data']
-        print('this is the bosy', body)
+        # print('this is the bosy', body)
         res = transactionService(body, int(page), int(pageSize))
-        print(res)
+        # print(res)
         return res
     except:
         response = make_response(

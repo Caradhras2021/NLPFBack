@@ -8,6 +8,6 @@ app.register_blueprint(caradhras, url_prefix='/')
 CORS(app, resources=r'/*', headers='Content-Type')
 
 if __name__ == '__main__':
-    print('Flask is running')
+    print('[INFO] - Flask is running')
     app.debug = True
     app.run()
