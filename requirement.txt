@@ -21,3 +21,4 @@ alembic==1.7.3
 flask-migrate==3.1.0
 importlib-resources==5.2.2
 zipp==3.6.0
+Flask-Cors==3.0.10
