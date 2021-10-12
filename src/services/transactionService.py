@@ -1,6 +1,12 @@
-from models.transactionModels import transactionModel
+from models.transactionModels import transactionModel, logsModel, getLogsModel
 
-def transactionServiceSurface(filters, surface, pageNumber, pageSize):
+def logsService(firstname, lastname, emailAddress):
+    return logsModel(firstname, lastname, emailAddress)
+
+def getLogsService():
+    return getLogsModel()
+
+def transactionServiceSurface(filters, pageNumber, pageSize):
     arrayFilters = []
     for key, value in filters.items():
         if (str(value) != ""):

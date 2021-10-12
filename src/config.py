@@ -8,3 +8,4 @@ databaseURI = 'mongodb+srv://caradhras:{}@apinlpf.elufi.mongodb.net/{}?retryWrit
 
 # Collection Name
 collectionData = "data"
+collectionLogs = "logs"
