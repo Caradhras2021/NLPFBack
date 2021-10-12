@@ -7,7 +7,9 @@ mandatoryFields = { "id_mutation": 1, "date_mutation": 1, "valeur_fonciere": 1, 
 
 def transactionModel(filters, surface, pageNumber=1, pageSize=20):
     if surface >= 0:
-        query = { "$and": filters, "lot1_surface_carrez": { "$gte": surface - 10, "$lte": surface + 10} }
+        surface_low = surface * 0.75
+        surface_high = surface * 1.25
+        query = { "$and": filters, "lot1_surface_carrez": { "$gte": surface_low, "$lte": surface_high } }
     else:
         query = { "$and": filters }
 
