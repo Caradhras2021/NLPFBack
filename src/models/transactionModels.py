@@ -7,6 +7,8 @@ mandatoryFields = { "id_mutation": 1, "date_mutation": 1, "valeur_fonciere": 1, 
      "adresse_nom_voie": 1, "code_postal": 1, "nom_commune": 1, "longitude": 1, "latitude": 1, "surface_terrain": 1,
      "type_local": 1, "nombre_pieces_principales": 1, "lot1_surface_carrez": 1 }
 
+fieldsAverageSquarePrices = {"lot1_surface_carrez": 1, "valeur_fonciere": 1, "type_local": 1}
+
 def jsonconverter(o):
     print(o)
     if isinstance(o, (datetime)):
@@ -31,10 +33,9 @@ def logsModel(firstname, lastname, emailAddress):
         return "can't add log into db."
 
 def computeAverageSquarePrice(filters):
-    fieldsAverageSquarePrices = {"lot1_surface_carrez": 1, "valeur_fonciere": 1, "type_local": 1}
     query = { "$and": filters, "lot1_surface_carrez": { "$exists": True, "$not": {"$size": 0}},  "type_local": { "$exists": True, "$not": {"$size": 0}},
     "valeur_fonciere": { "$exists": True, "$not": {"$size": 0}}}
-    cursor = dataTable.find(query, fieldsAverageSquarePrices).limit(500)
+    cursor = dataTable.find(query, fieldsAverageSquarePrices).limit(5000)
     totalPriceApp = 0
     totalNbApp = 0
     totalPriceMais = 0
@@ -62,17 +63,15 @@ def computeAverageSquarePrice(filters):
         resMais = totalPriceMais/totalNbMais
     return (resApp, resMais)
 
-        
-
-def checkFiltersAppMais(filters):
-    for (key) in filters:
-        value = AttrDict(key)
-        try:
-            if (str(value.type_local) == "Appartement" or str(value.type_local) == "Maison" or str(value.type_local) == "Both"):
-                return True
-        except:
-            continue
-    return False
+# def checkFiltersAppMais(filters):
+#     for (key) in filters:
+#         value = AttrDict(key)
+#         try:
+#             if (str(value.type_local) == "Appartement" or str(value.type_local) == "Maison" or str(value.type_local) == "Both"):
+#                 return True
+#         except:
+#             continue
+#     return False
 
 def transactionModel(filters, surface, pageNumber=1, pageSize=20):
     if surface >= 0:
@@ -95,5 +94,4 @@ def transactionModel(filters, surface, pageNumber=1, pageSize=20):
     obj = {"price_m2_appartement": app, "price_m2_maison": mais}
     res.append(obj)
     response = json.dumps(res)
-    print(response)
     return response
