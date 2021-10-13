@@ -10,11 +10,7 @@ def transactionServiceSurface(filters, pageNumber, pageSize):
     arrayFilters = []
     for key, value in filters.items():
         if (str(value) != ""):
-            if (str(value) == "Both"):
-                arrayFilters.append({"type_local": "Appartement"})
-                arrayFilters.append({"type_local": "Maison"})
-            else:
-                arrayFilters.append({key: value})
+            arrayFilters.append({key: value})
     transactions = transactionModel(arrayFilters, pageNumber, pageSize)
     return transactions
 

@@ -32,7 +32,7 @@ def logsModel(firstname, lastname, emailAddress):
 
 def computeAverageSquarePrice(filters):
     fieldsAverageSquarePrices = {"lot1_surface_carrez": 1, "valeur_fonciere": 1, "type_local": 1}
-    query = { "$and": filters, "lot1_surface_carrez": { "$exists": True, "$not": {"$size": 0}},  "surface_terrain": { "$exists": True, "$not": {"$size": 0}},
+    query = { "$and": filters, "lot1_surface_carrez": { "$exists": True, "$not": {"$size": 0}},  "type_local": { "$exists": True, "$not": {"$size": 0}},
     "valeur_fonciere": { "$exists": True, "$not": {"$size": 0}}}
     cursor = dataTable.find(query, fieldsAverageSquarePrices).limit(500)
     totalPriceApp = 0
@@ -46,11 +46,11 @@ def computeAverageSquarePrice(filters):
         tmpPriceApp = 0
         tmpPriceMais = 0
         try:
-            if (str(value.type_local) == "Maison" or str(value.type_local) == "Both"):
+            if (str(value.type_local) == "Maison"):
                 tmpPriceMais = int(value.valeur_fonciere) / int(value.lot1_surface_carrez)
                 totalPriceMais += tmpPriceMais
                 totalNbMais += 1
-            elif (str(value.type_local) == "Appartement" or str(value.type_local) == "Both"):
+            elif (str(value.type_local) == "Appartement"):
                 tmpPriceApp = int(value.valeur_fonciere) / int(value.lot1_surface_carrez)
                 totalPriceApp += tmpPriceApp
                 totalNbApp += 1
@@ -91,11 +91,9 @@ def transactionModel(filters, surface, pageNumber=1, pageSize=20):
     for doc in cursor:
         doc.pop('_id')
         res.append(doc)
+    (app, mais) = computeAverageSquarePrice(filters)
+    obj = {"price_m2_appartement": app, "price_m2_maison": mais}
+    res.append(obj)
     response = json.dumps(res)
-    if (checkFiltersAppMais(filters)):
-        (app, mais) = computeAverageSquarePrice(filters)
-        obj = {"price_m2_appartement": app, "price_m2_maison": mais}
-        strObj = json.dumps(obj)
-        response += strObj
-        print(response)
+    print(response)
     return response
